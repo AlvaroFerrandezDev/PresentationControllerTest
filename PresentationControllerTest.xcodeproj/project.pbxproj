@@ -17,6 +17,9 @@
 		67AD2361256E826D0053E558 /* HomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67AD2360256E826D0053E558 /* HomePresenter.swift */; };
 		67AD2366256E82E90053E558 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67AD2364256E82E90053E558 /* HomeView.swift */; };
 		67AD2367256E82E90053E558 /* HomeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67AD2365256E82E90053E558 /* HomeView.xib */; };
+		67AD236B256E97560053E558 /* PresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67AD236A256E97560053E558 /* PresentationController.swift */; };
+		67AD2371256E98830053E558 /* OverlayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67AD2370256E98830053E558 /* OverlayView.xib */; };
+		67AD2374256E9A5E0053E558 /* OverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67AD2373256E9A5E0053E558 /* OverlayView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +35,9 @@
 		67AD2360256E826D0053E558 /* HomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePresenter.swift; sourceTree = "<group>"; };
 		67AD2364256E82E90053E558 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		67AD2365256E82E90053E558 /* HomeView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeView.xib; sourceTree = "<group>"; };
+		67AD236A256E97560053E558 /* PresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationController.swift; sourceTree = "<group>"; };
+		67AD2370256E98830053E558 /* OverlayView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OverlayView.xib; sourceTree = "<group>"; };
+		67AD2373256E9A5E0053E558 /* OverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +71,7 @@
 			isa = PBXGroup;
 			children = (
 				67AD234D256E81BC0053E558 /* Home */,
+				67AD236F256E98580053E558 /* Overlay */,
 				67AD234B256E819B0053E558 /* Utils */,
 				67AD2349256E81900053E558 /* Project */,
 				67AD2342256E81700053E558 /* Info.plist */,
@@ -84,6 +91,7 @@
 		67AD234B256E819B0053E558 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				67AD236A256E97560053E558 /* PresentationController.swift */,
 				67AD233D256E81700053E558 /* Assets.xcassets */,
 				67AD233F256E81700053E558 /* LaunchScreen.storyboard */,
 			);
@@ -141,6 +149,15 @@
 				67AD2360256E826D0053E558 /* HomePresenter.swift */,
 			);
 			path = Presenter;
+			sourceTree = "<group>";
+		};
+		67AD236F256E98580053E558 /* Overlay */ = {
+			isa = PBXGroup;
+			children = (
+				67AD2370256E98830053E558 /* OverlayView.xib */,
+				67AD2373256E9A5E0053E558 /* OverlayView.swift */,
+			);
+			path = Overlay;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -202,6 +219,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				67AD2341256E81700053E558 /* LaunchScreen.storyboard in Resources */,
+				67AD2371256E98830053E558 /* OverlayView.xib in Resources */,
 				67AD233E256E81700053E558 /* Assets.xcassets in Resources */,
 				67AD2367256E82E90053E558 /* HomeView.xib in Resources */,
 			);
@@ -214,6 +232,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				67AD2374256E9A5E0053E558 /* OverlayView.swift in Sources */,
 				67AD2361256E826D0053E558 /* HomePresenter.swift in Sources */,
 				67AD2366256E82E90053E558 /* HomeView.swift in Sources */,
 				67AD2335256E816F0053E558 /* AppDelegate.swift in Sources */,
@@ -221,6 +240,7 @@
 				67AD235A256E82570053E558 /* HomeInteractor.swift in Sources */,
 				67AD235D256E825F0053E558 /* HomeProtocol.swift in Sources */,
 				67AD2337256E816F0053E558 /* SceneDelegate.swift in Sources */,
+				67AD236B256E97560053E558 /* PresentationController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
