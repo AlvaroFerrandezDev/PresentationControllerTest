@@ -14,6 +14,9 @@ class PresentationController: UIPresentationController {
 
     var firstTime = true
 
+    var titleLabel = UILabel()
+    var descriptionLabel = UILabel()
+
     var diffTitle = CGFloat(0)
     var diffDescription = CGFloat(0)
 
@@ -40,23 +43,10 @@ class PresentationController: UIPresentationController {
 
     override var frameOfPresentedViewInContainerView: CGRect {
         if let containerView = self.containerView {
-            guard let titleLabel = presentedView?.subviews[2] as? UILabel else { return CGRect() }
-            guard let descriptionLabel = presentedView?.subviews[3] as? UILabel else { return CGRect() }
             guard let presentedView = self.presentedView else { return CGRect() }
 
-            if firstTime {
-                let oldHeightTitle = titleLabel.frame.height
-                let oldHeightDescription = descriptionLabel.frame.height
-                titleLabel.layoutIfNeeded()
-                descriptionLabel.layoutIfNeeded()
-                let newHeightTitle = titleLabel.frame.height
-                let newHeightDescription = descriptionLabel.frame.height
-
-                diffTitle = newHeightTitle - oldHeightTitle
-                diffDescription = newHeightDescription - oldHeightDescription
-
-                firstTime = false
-            }
+            getLabels(presentedView)
+            getDimensions()
 
             let heightPresentedView = presentedView.frame.height + diffTitle + diffDescription
 
@@ -64,6 +54,36 @@ class PresentationController: UIPresentationController {
                           size: CGSize(width: containerView.frame.width, height: heightPresentedView))
         }
         return CGRect()
+    }
+
+    private func getLabels(_ presentedView: UIView) {
+        for view in presentedView.subviews {
+            if let currentView = view as? UILabel {
+                if currentView.restorationIdentifier == "TitleLabel" {
+                    titleLabel = currentView
+                }
+
+                if currentView.restorationIdentifier == "DescriptionLabel" {
+                    descriptionLabel = currentView
+                }
+            }
+        }
+    }
+
+    private func getDimensions() {
+        if firstTime {
+            firstTime = false
+
+            let oldHeightTitle = titleLabel.frame.height
+            let oldHeightDescription = descriptionLabel.frame.height
+            titleLabel.layoutIfNeeded()
+            descriptionLabel.layoutIfNeeded()
+            let newHeightTitle = titleLabel.frame.height
+            let newHeightDescription = descriptionLabel.frame.height
+
+            diffTitle = newHeightTitle - oldHeightTitle
+            diffDescription = newHeightDescription - oldHeightDescription
+        }
     }
 
     override func presentationTransitionWillBegin() {
@@ -86,23 +106,12 @@ class PresentationController: UIPresentationController {
         }
     }
 
-    override func containerViewWillLayoutSubviews() {
-        super.containerViewWillLayoutSubviews()
-    }
-
     override func containerViewDidLayoutSubviews() {
         super.containerViewDidLayoutSubviews()
         presentedView?.frame = frameOfPresentedViewInContainerView
         if blurEffectBool {
             blurEffectView.frame = containerView!.bounds
         }
-    }
-
-    override func presentationTransitionDidEnd(_: Bool) {
-        guard let presentedView = self.presentedView else { return }
-
-        presentedView.updateConstraintsIfNeeded()
-        presentedView.layoutIfNeeded()
     }
 
     @objc func dismissController() {
@@ -113,4 +122,3 @@ class PresentationController: UIPresentationController {
         presentedViewController.dismiss(animated: true, completion: nil)
     }
 }
-

@@ -13,6 +13,8 @@ class HomeView: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigationItem.title = "Modales"
     }
 
     @IBAction func buttonPressedShort(_: UIButton) {
@@ -30,7 +32,7 @@ class HomeView: UIViewController {
     }
 
     @IBAction func buttonPressedLarge(_: UIButton) {
-        let slideVC = OverlayView(title: "Título de ejemplo", description: "Descripción de ejemplo Descripción de ejemplo Descripción de ejemplo Descripción de ejemplo Descripción de ejemplo Descripción de ejemplo Descripción de ejemplo Descripción de ejemplo Descripción de ejemplo  Descripción de ejemplo Descripción de ejemplo Descripción de ejemplo Descripción de ejemplo Descripción de ejemplo Descripción de ejemplo Descripción de ejemplo Descripción de ejemplo")
+        let slideVC = OverlayView(title: "Título de ejemplo", description: "Descripción de ejemplo Descripción de ejemplo Descripción de ejemplo Descripción de ejemplo Descripción de ejemplo  Descripción de ejemplo Descripción de ejemplo Descripción de ejemplo Descripción de ejemplo  Descripción de ejemplo Descripción de ejemplo Descripción de ejemplo Descripción de ejemplo  Descripción de ejemplo Descripción de ejemplo Descripción de ejemplo Descripción de ejemplo")
         slideVC.modalPresentationStyle = .custom
         slideVC.transitioningDelegate = self
         present(slideVC, animated: true, completion: nil)
