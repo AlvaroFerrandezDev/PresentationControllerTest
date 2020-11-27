@@ -16,16 +16,20 @@ class OverlayView: UIViewController {
     @IBOutlet public weak var titleLabel: UILabel!
     @IBOutlet public weak var descriptionLabel: UILabel!
     @IBOutlet weak var closeButton: UIButton!
+    @IBOutlet weak var titleLabelToImage: NSLayoutConstraint!
+    @IBOutlet weak var titleLabelToLeading: NSLayoutConstraint!
 
     public var buttonActionHandler: (() -> Void)?
 
-    private var imageIcon = UIImage(systemName: "info.cirlce")
+    private var imageIcon = UIImage()
     private var titleText: String = ""
     private var descriptionText: String = ""
     public var blurBool: Bool = false
     public var animatedBool: Bool = false
 
-    init(image: UIImage? = UIImage(systemName: "info.circle"), title: String, description: String, blurBool: Bool? = false, animatedBool: Bool? = false) {
+    let purpleColor = UIColor(red: CGFloat(78.0 / 255.0), green: CGFloat(77.0 / 255.0), blue: CGFloat(128.0 / 255.0), alpha: CGFloat(1.0))
+
+    init(image: UIImage? = UIImage(), title: String, description: String, blurBool: Bool? = false, animatedBool: Bool? = false) {
         imageIcon = image ?? UIImage()
         titleText = title
         descriptionText = description
@@ -44,7 +48,7 @@ class OverlayView: UIViewController {
 
         setupUI()
 
-        if !animatedBool {
+        if animatedBool {
             let panGesture = UIPanGestureRecognizer(target: self, action: #selector(panGestureRecognizerAction))
             view.addGestureRecognizer(panGesture)
         }
@@ -59,8 +63,21 @@ class OverlayView: UIViewController {
     func setupUI() {
         titleLabel.text = titleText
         descriptionLabel.text = descriptionText
-        iconImageView.image = imageIcon
-        closeButton.setTitle("X", for: .normal)
+
+        titleLabel.font = UIFont(name: "HelveticaNeue-Bold", size: 18.0)
+        titleLabel.textColor = purpleColor
+        descriptionLabel.font = UIFont(name: "HelveticaNeue", size: 16.0)
+        descriptionLabel.textColor = purpleColor
+
+        if imageIcon == UIImage() {
+            iconImageView.isHidden = true
+            titleLabelToImage.isActive = false
+            titleLabelToLeading.isActive = true
+        } else {
+            iconImageView.image = imageIcon
+            titleLabelToImage.isActive = true
+            titleLabelToLeading.isActive = false
+        }
     }
 
     override func viewDidLayoutSubviews() {

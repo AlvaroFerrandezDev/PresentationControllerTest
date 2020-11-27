@@ -9,6 +9,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeView" customModule="PresentationControllerTest" customModuleProvider="target">
             <connections>
+                <outlet property="button1" destination="f9Q-6f-G6i" id="DLE-4V-RJ0"/>
+                <outlet property="button2" destination="yui-L7-aaO" id="Teu-rP-BgN"/>
+                <outlet property="button3" destination="dt5-Rg-9SF" id="rZX-Pt-RPn"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -17,60 +20,61 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="60" translatesAutoresizingMaskIntoConstraints="NO" id="JFo-05-aYa">
-                    <rect key="frame" x="120" y="303" width="174" height="300"/>
-                    <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f9Q-6f-G6i">
-                            <rect key="frame" x="0.0" y="0.0" width="174" height="60"/>
-                            <color key="backgroundColor" red="0.74539448949999998" green="0.7922538563" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="60" id="vgs-Nu-DAF"/>
-                            </constraints>
-                            <size key="titleShadowOffset" width="1" height="1"/>
-                            <state key="normal" title="Short">
-                                <color key="titleShadowColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </state>
-                            <connections>
-                                <action selector="buttonPressedShort:" destination="-1" eventType="touchUpInside" id="IES-ai-Yy0"/>
-                            </connections>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yui-L7-aaO">
-                            <rect key="frame" x="0.0" y="120" width="174" height="60"/>
-                            <color key="backgroundColor" red="0.74539448949999998" green="0.7922538563" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="60" id="EHK-sj-qU0"/>
-                            </constraints>
-                            <size key="titleShadowOffset" width="1" height="1"/>
-                            <state key="normal" title="Medium">
-                                <color key="titleShadowColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </state>
-                            <connections>
-                                <action selector="buttonPressedMedium:" destination="-1" eventType="touchUpInside" id="PFe-HN-qD3"/>
-                            </connections>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dt5-Rg-9SF">
-                            <rect key="frame" x="0.0" y="240" width="174" height="60"/>
-                            <color key="backgroundColor" red="0.74539448949999998" green="0.7922538563" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="60" id="bru-4e-j6u"/>
-                            </constraints>
-                            <size key="titleShadowOffset" width="1" height="1"/>
-                            <state key="normal" title="Large">
-                                <color key="titleShadowColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </state>
-                            <connections>
-                                <action selector="buttonPressedLarge:" destination="-1" eventType="touchUpInside" id="CFM-n1-R9F"/>
-                            </connections>
-                        </button>
-                    </subviews>
-                </stackView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f9Q-6f-G6i">
+                    <rect key="frame" x="157" y="283" width="100" height="100"/>
+                    <color key="backgroundColor" red="0.74539448949999998" green="0.7922538563" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="f9Q-6f-G6i" secondAttribute="height" multiplier="1:1" id="eXx-z4-BPx"/>
+                        <constraint firstAttribute="height" constant="100" id="vgs-Nu-DAF"/>
+                    </constraints>
+                    <size key="titleShadowOffset" width="1" height="1"/>
+                    <state key="normal" title="Short">
+                        <color key="titleShadowColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <connections>
+                        <action selector="buttonPressedShort:" destination="-1" eventType="touchUpInside" id="IES-ai-Yy0"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yui-L7-aaO">
+                    <rect key="frame" x="157" y="403" width="100" height="100"/>
+                    <color key="backgroundColor" red="0.74539448949999998" green="0.7922538563" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="100" id="EHK-sj-qU0"/>
+                        <constraint firstAttribute="width" secondItem="yui-L7-aaO" secondAttribute="height" multiplier="1:1" id="kFi-PY-uS4"/>
+                    </constraints>
+                    <size key="titleShadowOffset" width="1" height="1"/>
+                    <state key="normal" title="Medium">
+                        <color key="titleShadowColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <connections>
+                        <action selector="buttonPressedMedium:" destination="-1" eventType="touchUpInside" id="PFe-HN-qD3"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dt5-Rg-9SF">
+                    <rect key="frame" x="157" y="523" width="100" height="100"/>
+                    <color key="backgroundColor" red="0.74539448949999998" green="0.7922538563" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="dt5-Rg-9SF" secondAttribute="height" multiplier="1:1" id="3ms-iE-tc7"/>
+                        <constraint firstAttribute="height" constant="100" id="bru-4e-j6u"/>
+                    </constraints>
+                    <size key="titleShadowOffset" width="1" height="1"/>
+                    <state key="normal" title="Large">
+                        <color key="titleShadowColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <connections>
+                        <action selector="buttonPressedLarge:" destination="-1" eventType="touchUpInside" id="CFM-n1-R9F"/>
+                    </connections>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <color key="backgroundColor" red="0.98146360960000001" green="1" blue="0.66029743080000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="JFo-05-aYa" secondAttribute="trailing" constant="120" id="O27-L7-2zq"/>
-                <constraint firstItem="JFo-05-aYa" firstAttribute="centerY" secondItem="fnl-2z-Ty3" secondAttribute="centerY" id="Udt-Iz-kjW"/>
-                <constraint firstItem="JFo-05-aYa" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="120" id="ogA-gb-JtQ"/>
+                <constraint firstItem="yui-L7-aaO" firstAttribute="centerY" secondItem="fnl-2z-Ty3" secondAttribute="centerY" id="1px-Of-a0b"/>
+                <constraint firstItem="f9Q-6f-G6i" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="WYo-Uc-zCS"/>
+                <constraint firstItem="yui-L7-aaO" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="XIH-SB-q6o"/>
+                <constraint firstItem="f9Q-6f-G6i" firstAttribute="bottom" secondItem="yui-L7-aaO" secondAttribute="top" constant="-20" id="izf-vt-hrJ"/>
+                <constraint firstItem="dt5-Rg-9SF" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="pWw-Rx-QyN"/>
+                <constraint firstItem="dt5-Rg-9SF" firstAttribute="top" secondItem="yui-L7-aaO" secondAttribute="bottom" constant="20" id="xLK-Pq-Ml4"/>
             </constraints>
             <point key="canvasLocation" x="19" y="100"/>
         </view>

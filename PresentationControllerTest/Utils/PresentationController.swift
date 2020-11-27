@@ -23,6 +23,9 @@ class PresentationController: UIPresentationController {
     var blurEffect: UIBlurEffect?
     var blurEffectBool: Bool = false
 
+    let purpleColorBackground = UIColor(red: CGFloat(78.0 / 255.0), green: CGFloat(77.0 / 255.0), blue: CGFloat(128.0 / 255.0), alpha: CGFloat(0.4))
+    var backgroundView = UIView()
+
     override init(presentedViewController: UIViewController, presenting presentingViewController: UIViewController?) {
         super.init(presentedViewController: presentedViewController, presenting: presentingViewController)
 
@@ -38,6 +41,10 @@ class PresentationController: UIPresentationController {
             blurEffectView.isUserInteractionEnabled = true
         }
 
+        backgroundView.isUserInteractionEnabled = false
+        backgroundView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        backgroundView.backgroundColor = purpleColorBackground
+
         presentedView.buttonActionHandler = dismissControllerHandler
     }
 
@@ -45,8 +52,8 @@ class PresentationController: UIPresentationController {
         if let containerView = self.containerView {
             guard let presentedView = self.presentedView else { return CGRect() }
 
-            getLabels(presentedView)
-            getDimensions()
+//            getLabels(presentedView)
+//            getDimensions(presentedView)
 
             let heightPresentedView = presentedView.frame.height + diffTitle + diffDescription
 
@@ -70,7 +77,7 @@ class PresentationController: UIPresentationController {
         }
     }
 
-    private func getDimensions() {
+    private func getDimensions(_: UIView) {
         if firstTime {
             firstTime = false
 
@@ -94,6 +101,12 @@ class PresentationController: UIPresentationController {
                 self.blurEffectView.alpha = 0.7
             }, completion: { _ in })
         }
+
+        backgroundView.alpha = 0
+        containerView?.addSubview(backgroundView)
+        presentedViewController.transitionCoordinator?.animate(alongsideTransition: { _ in
+            self.backgroundView.alpha = 1.0
+        }, completion: { _ in })
     }
 
     override func dismissalTransitionWillBegin() {
@@ -104,13 +117,21 @@ class PresentationController: UIPresentationController {
                 self.blurEffectView.removeFromSuperview()
             })
         }
+
+        presentedViewController.transitionCoordinator?.animate(alongsideTransition: { _ in
+            self.backgroundView.alpha = 0
+        }, completion: { _ in
+            self.backgroundView.removeFromSuperview()
+        })
     }
 
     override func containerViewDidLayoutSubviews() {
         super.containerViewDidLayoutSubviews()
+        presentedView?.layer.cornerRadius = 14.0
         presentedView?.frame = frameOfPresentedViewInContainerView
+        backgroundView.frame = containerView?.bounds ?? CGRect()
         if blurEffectBool {
-            blurEffectView.frame = containerView!.bounds
+            blurEffectView.frame = containerView?.bounds ?? CGRect()
         }
     }
 
