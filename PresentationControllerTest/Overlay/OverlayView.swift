@@ -12,29 +12,24 @@ class OverlayView: UIViewController {
     var hasSetPointOrigin = false
     var pointOrigin: CGPoint?
 
-    @IBOutlet weak var iconImageView: UIImageView!
     @IBOutlet public weak var titleLabel: UILabel!
     @IBOutlet public weak var descriptionLabel: UILabel!
     @IBOutlet weak var closeButton: UIButton!
-    @IBOutlet weak var titleLabelToImage: NSLayoutConstraint!
-    @IBOutlet weak var titleLabelToLeading: NSLayoutConstraint!
 
     public var buttonActionHandler: (() -> Void)?
 
-    private var imageIcon = UIImage()
     private var titleText: String = ""
     private var descriptionText: String = ""
-    public var blurBool: Bool = false
-    public var animatedBool: Bool = false
+    public var blurBoolAux: Bool = false
+    public var animatedBoolAux: Bool = false
 
     let purpleColor = UIColor(red: CGFloat(78.0 / 255.0), green: CGFloat(77.0 / 255.0), blue: CGFloat(128.0 / 255.0), alpha: CGFloat(1.0))
 
-    init(image: UIImage? = UIImage(), title: String, description: String, blurBool: Bool? = false, animatedBool: Bool? = false) {
-        imageIcon = image ?? UIImage()
+    init(title: String, description: String, blurBool: Bool? = false, animatedBool: Bool? = false) {
         titleText = title
         descriptionText = description
-        self.blurBool = blurBool ?? false
-        self.animatedBool = animatedBool ?? false
+        blurBoolAux = blurBool ?? false
+        animatedBoolAux = animatedBool ?? false
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -48,7 +43,7 @@ class OverlayView: UIViewController {
 
         setupUI()
 
-        if animatedBool {
+        if animatedBoolAux {
             let panGesture = UIPanGestureRecognizer(target: self, action: #selector(panGestureRecognizerAction))
             view.addGestureRecognizer(panGesture)
         }
@@ -69,15 +64,8 @@ class OverlayView: UIViewController {
         descriptionLabel.font = UIFont(name: "HelveticaNeue", size: 16.0)
         descriptionLabel.textColor = purpleColor
 
-        if imageIcon == UIImage() {
-            iconImageView.isHidden = true
-            titleLabelToImage.isActive = false
-            titleLabelToLeading.isActive = true
-        } else {
-            iconImageView.image = imageIcon
-            titleLabelToImage.isActive = true
-            titleLabelToLeading.isActive = false
-        }
+        let closeButtonImage = (UIImage(named: "closeButton") ?? UIImage()).image(withTintColor: .systemGray)
+        closeButton.setImage(closeButtonImage, for: .normal)
     }
 
     override func viewDidLayoutSubviews() {
@@ -104,5 +92,22 @@ class OverlayView: UIViewController {
                 }
             }
         }
+    }
+}
+
+public extension UIImage {
+    func image(withTintColor color: UIColor) -> UIImage {
+        UIGraphicsBeginImageContextWithOptions(size, false, scale)
+        let context: CGContext = UIGraphicsGetCurrentContext()!
+        context.translateBy(x: 0, y: size.height)
+        context.scaleBy(x: 1.0, y: -1.0)
+        context.setBlendMode(CGBlendMode.normal)
+        let rect = CGRect(x: 0, y: 0, width: size.width, height: size.height)
+        context.clip(to: rect, mask: cgImage!)
+        color.setFill()
+        context.fill(rect)
+        let newImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        return newImage
     }
 }

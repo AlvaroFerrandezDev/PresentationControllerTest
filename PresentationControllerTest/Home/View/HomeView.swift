@@ -20,8 +20,8 @@ class HomeView: UIViewController {
 
         setupUI()
     }
-    
-    private func setupUI(){
+
+    private func setupUI() {
         navigationItem.title = "Modales"
         button1.layer.cornerRadius = button1.frame.size.width / 2
         button2.layer.cornerRadius = button2.frame.size.width / 2
@@ -29,21 +29,21 @@ class HomeView: UIViewController {
     }
 
     @IBAction func buttonPressedShort(_: UIButton) {
-        let slideVC = OverlayView(title: "Grasas", description: "Grasas de perfil lípido bajo adaptado a las recomendaciones ADA y EASD.", animatedBool: true)
+        let slideVC = OverlayView(title: "Grasas", description: "Grasas de perfil lípido bajo adaptado a las recomendaciones ADA y EASD.")
         slideVC.modalPresentationStyle = .custom
         slideVC.transitioningDelegate = self
         present(slideVC, animated: true, completion: nil)
     }
 
     @IBAction func buttonPressedMedium(_: UIButton) {
-        let slideVC = OverlayView(image: UIImage(named: "nike"), title: "Pescado con arroz", description: "Fuente de proteínas")
+        let slideVC = OverlayView(title: "Pescado con arroz", description: "Fuente de proteínas.")
         slideVC.modalPresentationStyle = .custom
         slideVC.transitioningDelegate = self
         present(slideVC, animated: true, completion: nil)
     }
 
     @IBAction func buttonPressedLarge(_: UIButton) {
-        let slideVC = OverlayView(image: UIImage(named: ""), title: "Pavo con champiñones", description: "Fuente de proteínas. Vitaminas A, D, B, C, B1, B2, niacina, B6, ácido fólico, B12, biotina, ácido pantoténico.", blurBool: true)
+        let slideVC = OverlayView(title: "Pavo con champiñones", description: "Fuente de proteínas. Vitaminas A, D, B, C, B1, B2, niacina, B6, ácido fólico, B12, biotina, ácido pantoténico. ")
         slideVC.modalPresentationStyle = .custom
         slideVC.transitioningDelegate = self
         present(slideVC, animated: true, completion: nil)

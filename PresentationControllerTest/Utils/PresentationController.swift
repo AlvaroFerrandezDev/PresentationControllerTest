@@ -31,7 +31,7 @@ class PresentationController: UIPresentationController {
 
         guard let presentedView = presentedViewController as? OverlayView else { return }
 
-        if presentedView.blurBool {
+        if presentedView.blurBoolAux {
             blurEffectBool = true
             blurEffect = UIBlurEffect(style: .dark)
             blurEffectView = UIVisualEffectView(effect: blurEffect)
@@ -51,46 +51,10 @@ class PresentationController: UIPresentationController {
     override var frameOfPresentedViewInContainerView: CGRect {
         if let containerView = self.containerView {
             guard let presentedView = self.presentedView else { return CGRect() }
-
-//            getLabels(presentedView)
-//            getDimensions(presentedView)
-
-            let heightPresentedView = presentedView.frame.height + diffTitle + diffDescription
-
-            return CGRect(origin: CGPoint(x: 0, y: containerView.frame.maxY - heightPresentedView),
-                          size: CGSize(width: containerView.frame.width, height: heightPresentedView))
+            return CGRect(origin: CGPoint(x: 0, y: containerView.frame.maxY - presentedView.frame.height),
+                          size: CGSize(width: containerView.frame.width, height: presentedView.frame.height))
         }
         return CGRect()
-    }
-
-    private func getLabels(_ presentedView: UIView) {
-        for view in presentedView.subviews {
-            if let currentView = view as? UILabel {
-                if currentView.restorationIdentifier == "TitleLabel" {
-                    titleLabel = currentView
-                }
-
-                if currentView.restorationIdentifier == "DescriptionLabel" {
-                    descriptionLabel = currentView
-                }
-            }
-        }
-    }
-
-    private func getDimensions(_: UIView) {
-        if firstTime {
-            firstTime = false
-
-            let oldHeightTitle = titleLabel.frame.height
-            let oldHeightDescription = descriptionLabel.frame.height
-            titleLabel.layoutIfNeeded()
-            descriptionLabel.layoutIfNeeded()
-            let newHeightTitle = titleLabel.frame.height
-            let newHeightDescription = descriptionLabel.frame.height
-
-            diffTitle = newHeightTitle - oldHeightTitle
-            diffDescription = newHeightDescription - oldHeightDescription
-        }
     }
 
     override func presentationTransitionWillBegin() {
