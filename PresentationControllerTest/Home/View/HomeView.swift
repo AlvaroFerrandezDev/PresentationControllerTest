@@ -18,7 +18,6 @@ class HomeView: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
         setupUI()
     }
 
@@ -30,21 +29,21 @@ class HomeView: UIViewController {
     }
 
     @IBAction func buttonPressedShort(_: UIButton) {
-        let slideVC = OverlayView(title: "Grasas", description: "Grasas de perfil lípido bajo adaptado a las recomendaciones ADA y EASD.")
+        let slideVC = CustomModalView(title: "Grasas", description: "Grasas de perfil lipídico bajo adaptado a las recomendaciones ADA y EASD.")
         slideVC.modalPresentationStyle = .custom
         slideVC.transitioningDelegate = self
         present(slideVC, animated: true, completion: nil)
     }
 
     @IBAction func buttonPressedMedium(_: UIButton) {
-        let slideVC = OverlayView(title: "Pescado con arroz", description: "Fuente de proteínas.")
+        let slideVC = CustomModalView(title: "Pescado con arroz", description: "Fuente de proteínas.")
         slideVC.modalPresentationStyle = .custom
         slideVC.transitioningDelegate = self
         present(slideVC, animated: true, completion: nil)
     }
 
     @IBAction func buttonPressedLarge(_: UIButton) {
-        let slideVC = OverlayView(title: "Pavo con champiñones", description: "Fuente de proteínas. Vitaminas A, D, B, C, B1, B2, niacina, B6, ácido fólico, B12, biotina, ácido pantoténico. ")
+        let slideVC = CustomModalView(title: "Pavo con champiñones", description: "Fuente de proteínas. Vitaminas A, D, B, C, B1, B2, niacina, B6, ácido fólico, B12, biotina, ácido pantoténico. ")
         slideVC.modalPresentationStyle = .custom
         slideVC.transitioningDelegate = self
         present(slideVC, animated: true, completion: nil)
@@ -55,6 +54,6 @@ extension HomeView: HomeViewProtocol {}
 
 extension HomeView: UIViewControllerTransitioningDelegate {
     func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source _: UIViewController) -> UIPresentationController? {
-        PresentationController(presentedViewController: presented, presenting: presenting)
+        CustomPresentationController(presentedViewController: presented, presenting: presenting)
     }
 }

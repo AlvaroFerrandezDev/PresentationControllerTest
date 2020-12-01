@@ -1,6 +1,6 @@
 //
-//  PresentationController.swift
-//  PresentationControllerTest
+//  CustomPresentationController.swift
+//  CustomPresentationController
 //
 //  Created by sopra on 25/11/20.
 //  Copyright © 2020 ÁF. All rights reserved.
@@ -8,31 +8,28 @@
 
 import UIKit
 
-class PresentationController: UIPresentationController {
+struct CustomPresentationControllerConstants {
+    static let purpleColorBackground = UIColor(red: CGFloat(78.0 / 255.0), green: CGFloat(77.0 / 255.0), blue: CGFloat(128.0 / 255.0), alpha: CGFloat(0.4))
+}
+
+class CustomPresentationController: UIPresentationController {
+    // MARK: - Blur layer
+    var withBlurEffect: Bool = false
     var blurEffectView: UIVisualEffectView!
-    var tapGestureRecognizer = UITapGestureRecognizer()
-
-    var firstTime = true
-
-    var titleLabel = UILabel()
-    var descriptionLabel = UILabel()
-
-    var diffTitle = CGFloat(0)
-    var diffDescription = CGFloat(0)
-
     var blurEffect: UIBlurEffect?
-    var blurEffectBool: Bool = false
-
-    let purpleColorBackground = UIColor(red: CGFloat(78.0 / 255.0), green: CGFloat(77.0 / 255.0), blue: CGFloat(128.0 / 255.0), alpha: CGFloat(0.4))
+    // MARK: - Tap dismiss
+    var tapGestureRecognizer = UITapGestureRecognizer()
+    // MARK: - Background view
     var backgroundView = UIView()
 
+    // MARK: - Lyfecicle methods
     override init(presentedViewController: UIViewController, presenting presentingViewController: UIViewController?) {
         super.init(presentedViewController: presentedViewController, presenting: presentingViewController)
 
-        guard let presentedView = presentedViewController as? OverlayView else { return }
+        guard let presentedView = presentedViewController as? CustomModalView else { return }
+        withBlurEffect = presentedView.withBlurEffectAux
 
-        if presentedView.blurBoolAux {
-            blurEffectBool = true
+        if presentedView.withBlurEffectAux {
             blurEffect = UIBlurEffect(style: .dark)
             blurEffectView = UIVisualEffectView(effect: blurEffect)
             tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissController))
@@ -43,11 +40,22 @@ class PresentationController: UIPresentationController {
 
         backgroundView.isUserInteractionEnabled = false
         backgroundView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        backgroundView.backgroundColor = purpleColorBackground
+        backgroundView.backgroundColor = CustomPresentationControllerConstants.purpleColorBackground
 
         presentedView.buttonActionHandler = dismissControllerHandler
     }
 
+    override func containerViewDidLayoutSubviews() {
+        super.containerViewDidLayoutSubviews()
+        presentedView?.layer.cornerRadius = 14.0
+        presentedView?.frame = frameOfPresentedViewInContainerView
+        backgroundView.frame = containerView?.bounds ?? CGRect()
+        if withBlurEffect {
+            blurEffectView.frame = containerView?.bounds ?? CGRect()
+        }
+    }
+
+    // MARK: - Frame's variables
     override var frameOfPresentedViewInContainerView: CGRect {
         if let containerView = self.containerView {
             guard let presentedView = self.presentedView else { return CGRect() }
@@ -57,8 +65,9 @@ class PresentationController: UIPresentationController {
         return CGRect()
     }
 
+    // MARK: - Transition methods
     override func presentationTransitionWillBegin() {
-        if blurEffectBool {
+        if withBlurEffect {
             blurEffectView.alpha = 0
             containerView?.addSubview(blurEffectView)
             presentedViewController.transitionCoordinator?.animate(alongsideTransition: { _ in
@@ -74,7 +83,7 @@ class PresentationController: UIPresentationController {
     }
 
     override func dismissalTransitionWillBegin() {
-        if blurEffectBool {
+        if withBlurEffect {
             presentedViewController.transitionCoordinator?.animate(alongsideTransition: { _ in
                 self.blurEffectView.alpha = 0
             }, completion: { _ in
@@ -89,21 +98,12 @@ class PresentationController: UIPresentationController {
         })
     }
 
-    override func containerViewDidLayoutSubviews() {
-        super.containerViewDidLayoutSubviews()
-        presentedView?.layer.cornerRadius = 14.0
-        presentedView?.frame = frameOfPresentedViewInContainerView
-        backgroundView.frame = containerView?.bounds ?? CGRect()
-        if blurEffectBool {
-            blurEffectView.frame = containerView?.bounds ?? CGRect()
-        }
-    }
-
-    @objc func dismissController() {
+    // MARK: - Dismiss methods
+    @objc fileprivate func dismissController() {
         dismissControllerHandler()
     }
 
-    func dismissControllerHandler() {
+    fileprivate func dismissControllerHandler() {
         presentedViewController.dismiss(animated: true, completion: nil)
     }
 }

@@ -17,9 +17,10 @@
 		67AD2361256E826D0053E558 /* HomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67AD2360256E826D0053E558 /* HomePresenter.swift */; };
 		67AD2366256E82E90053E558 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67AD2364256E82E90053E558 /* HomeView.swift */; };
 		67AD2367256E82E90053E558 /* HomeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67AD2365256E82E90053E558 /* HomeView.xib */; };
-		67AD236B256E97560053E558 /* PresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67AD236A256E97560053E558 /* PresentationController.swift */; };
-		67AD2371256E98830053E558 /* OverlayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67AD2370256E98830053E558 /* OverlayView.xib */; };
-		67AD2374256E9A5E0053E558 /* OverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67AD2373256E9A5E0053E558 /* OverlayView.swift */; };
+		67AD236B256E97560053E558 /* CustomPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67AD236A256E97560053E558 /* CustomPresentationController.swift */; };
+		67AD2371256E98830053E558 /* CustomModalView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67AD2370256E98830053E558 /* CustomModalView.xib */; };
+		67AD2374256E9A5E0053E558 /* CustomModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67AD2373256E9A5E0053E558 /* CustomModalView.swift */; };
+		67E4A0CD2576716B00BE5DB5 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E4A0CC2576716B00BE5DB5 /* Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,9 +36,10 @@
 		67AD2360256E826D0053E558 /* HomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePresenter.swift; sourceTree = "<group>"; };
 		67AD2364256E82E90053E558 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		67AD2365256E82E90053E558 /* HomeView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeView.xib; sourceTree = "<group>"; };
-		67AD236A256E97560053E558 /* PresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationController.swift; sourceTree = "<group>"; };
-		67AD2370256E98830053E558 /* OverlayView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OverlayView.xib; sourceTree = "<group>"; };
-		67AD2373256E9A5E0053E558 /* OverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayView.swift; sourceTree = "<group>"; };
+		67AD236A256E97560053E558 /* CustomPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPresentationController.swift; sourceTree = "<group>"; };
+		67AD2370256E98830053E558 /* CustomModalView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomModalView.xib; sourceTree = "<group>"; };
+		67AD2373256E9A5E0053E558 /* CustomModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomModalView.swift; sourceTree = "<group>"; };
+		67E4A0CC2576716B00BE5DB5 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,7 +93,8 @@
 		67AD234B256E819B0053E558 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				67AD236A256E97560053E558 /* PresentationController.swift */,
+				67AD236A256E97560053E558 /* CustomPresentationController.swift */,
+				67E4A0CC2576716B00BE5DB5 /* Extensions.swift */,
 				67AD233D256E81700053E558 /* Assets.xcassets */,
 				67AD233F256E81700053E558 /* LaunchScreen.storyboard */,
 			);
@@ -154,8 +157,8 @@
 		67AD236F256E98580053E558 /* Overlay */ = {
 			isa = PBXGroup;
 			children = (
-				67AD2370256E98830053E558 /* OverlayView.xib */,
-				67AD2373256E9A5E0053E558 /* OverlayView.swift */,
+				67AD2373256E9A5E0053E558 /* CustomModalView.swift */,
+				67AD2370256E98830053E558 /* CustomModalView.xib */,
 			);
 			path = Overlay;
 			sourceTree = "<group>";
@@ -219,7 +222,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				67AD2341256E81700053E558 /* LaunchScreen.storyboard in Resources */,
-				67AD2371256E98830053E558 /* OverlayView.xib in Resources */,
+				67AD2371256E98830053E558 /* CustomModalView.xib in Resources */,
 				67AD233E256E81700053E558 /* Assets.xcassets in Resources */,
 				67AD2367256E82E90053E558 /* HomeView.xib in Resources */,
 			);
@@ -232,15 +235,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				67AD2374256E9A5E0053E558 /* OverlayView.swift in Sources */,
+				67AD2374256E9A5E0053E558 /* CustomModalView.swift in Sources */,
 				67AD2361256E826D0053E558 /* HomePresenter.swift in Sources */,
 				67AD2366256E82E90053E558 /* HomeView.swift in Sources */,
 				67AD2335256E816F0053E558 /* AppDelegate.swift in Sources */,
 				67AD2350256E82200053E558 /* HomeRouter.swift in Sources */,
+				67E4A0CD2576716B00BE5DB5 /* Extensions.swift in Sources */,
 				67AD235A256E82570053E558 /* HomeInteractor.swift in Sources */,
 				67AD235D256E825F0053E558 /* HomeProtocol.swift in Sources */,
 				67AD2337256E816F0053E558 /* SceneDelegate.swift in Sources */,
-				67AD236B256E97560053E558 /* PresentationController.swift in Sources */,
+				67AD236B256E97560053E558 /* CustomPresentationController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -380,7 +384,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = R4MG5ZD2AJ;
+				DEVELOPMENT_TEAM = K86ARX449Q;
 				INFOPLIST_FILE = PresentationControllerTest/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -399,7 +403,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = R4MG5ZD2AJ;
+				DEVELOPMENT_TEAM = K86ARX449Q;
 				INFOPLIST_FILE = PresentationControllerTest/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
